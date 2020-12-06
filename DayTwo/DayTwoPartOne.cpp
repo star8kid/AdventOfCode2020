@@ -19,7 +19,6 @@ int validPassInstances(string inputFileName){
     if(inputFile.is_open()){
         while(getline(inputFile,fileLine)){
             //Zero: Definitions
-            // vector<int> extremesPair = {};
             string extremesUnsortedString;
             string extremeValueString = "";
             int extremeValueInt;
