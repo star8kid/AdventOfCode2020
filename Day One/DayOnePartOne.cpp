@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// Part One Timestamp: 56 minutes 15 seconds
+// Part One Time: 56 minutes 15 seconds
 
 int expenseCalc(string inputFileName){
     string fileLine;
