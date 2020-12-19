@@ -5,6 +5,8 @@
 
 using namespace std;
 
+// Current Time Lapse: 53 minutes 52 seconds
+
 int validPassInstancesAgain(string inputFileName){
 
     vector<int> firstIndexPossibilities = {};
@@ -55,10 +57,11 @@ int validPassInstancesAgain(string inputFileName){
         }
     }
     // Five: Give back to the cause once more (please no more nonsense).
-    return passwordCount;
+    return vaildPasswords;
 }
 
 int main(){
-    cout << validPassInstancesAgain("SamplePartTwoInput.txt");
+    
+    cout << validPassInstancesAgain("PartTwoInput.txt");
 
 }
