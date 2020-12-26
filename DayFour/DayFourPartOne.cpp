@@ -97,16 +97,6 @@ int main(){
     
     
     */
-    // string testString = "byr:1985 eyr:2021 iyr:2011 hgt:175cm pid:163069444 hcl:#18171d";
-    // cout << bool(testString.find("byr") != string::npos) << endl;
-    // cout << bool(testString.find("iyr") != string::npos) << endl;
-    // cout << bool(testString.find("eyr") != string::npos) << endl;
-    // cout << bool(testString.find("hgt") != string::npos) << endl;
-    // cout << bool(testString.find("hcl") != string::npos) << endl;
-    // cout << bool(testString.find("ecl") != string::npos) << endl;
-    // cout << bool(testString.find("pid") != string::npos) << endl;
-    // cout << bool(testString.find("cid") != string::npos) << endl;
-
 
     // int testIntger;
     // cout << (typeid(testIntger).name() == 'i');
