@@ -2,9 +2,26 @@
 #include<vector>
 #include<string>
 #include<algorithm>
+#include<math.h>
 
 using namespace std;
 
+// Full Timelapse: 2 hours 1 minute 21 seconds
+
+// A helper function. Ignore it.
+template <class Element>
+
+void elementsOf(vector<Element> inputVector){
+    cout << "The elements of this vector are: [";
+    for (int a = 0; a < inputVector.size(); a++){
+        if(a == inputVector.size() - 1){
+            cout << inputVector[a] << "]" << endl;
+        }
+        else{
+        cout << inputVector[a] << ",";
+        }
+    }
+}
 
 int main(){
 
@@ -13,45 +30,39 @@ int main(){
 
     while(true){
         bool is_valid_input = bool (cin >> tempString);
-        planeSeatPartitions.push_back(tempString);
         if (is_valid_input == false){
             break;
         }
+        else{
+            planeSeatPartitions.push_back(tempString);
+        }
     }
-
+    // X Coordinate Definitions
+    int upperXValue = 127;
+    int lowerXValue = 0;
+    // Y Coordinate Definitions
+    int upperYValue = 7;
+    int lowerYValue = 0;
+    // Values and ID Vector
     int XValue;
     int YValue;
-    pair <int,int> planeCoordinates(XValue,YValue);
     vector<int> planeSeatIDS = {};
-
-    // X Coordinate Definitions
-    int highestXValue = 127;
-    int lowestXValue = 0;
-    int upperXValue = highestXValue;
-    int lowerXValue = lowestXValue;
-    pair <int,int> boundsXValue (lowerXValue, upperXValue);
-    // Y Coordinate Definitions
-    int highestYValue = 7;
-    int lowestYValue = 0;
-    int upperYValue = highestYValue;
-    int lowerYValue = lowestYValue;
-    pair <int,int> boundsYValue (lowerYValue, upperYValue);
 
     for(int a = 0; a < planeSeatPartitions.size(); a++){
         // For Loop to find the X Value
         for(int b = 0; b < 7; b++){
             if(b == 6){
                 if(planeSeatPartitions[a][b] == 'F'){
-                    XValue = boundsXValue.first;
+                    XValue = lowerXValue;
                 }
                 else{
-                    XValue = boundsXValue.second;
+                    XValue = upperXValue;
                 }
             }
             else{
                 if (planeSeatPartitions[a][b] == 'F'){
                     // 'Lower Half' case
-                    upperXValue = ((upperXValue + lowerXValue + 1) / 2);
+                    upperXValue = int(floor((upperXValue + lowerXValue) / 2));
                 }
                 else if(planeSeatPartitions[a][b] == 'B'){
                     // 'Upper Half' case
@@ -63,16 +74,16 @@ int main(){
         for(int c = 7; c < 10; c++){
             if(c == 9){
                 if(planeSeatPartitions[a][c] == 'L'){
-                    YValue = boundsYValue.first;
+                    YValue = lowerYValue;
                 }
                 else{
-                    YValue = boundsYValue.second;
+                    YValue = upperYValue;
                 }
             }
             else{
                 if (planeSeatPartitions[a][c] == 'L'){
                     // 'Lower Half' case
-                    upperYValue = ((upperYValue + lowerYValue + 1) / 2);
+                    upperYValue = int(floor((upperYValue + lowerYValue) / 2));
                 }
                 else if(planeSeatPartitions[a][c] == 'R'){
                     // 'Upper Half' case
@@ -81,6 +92,7 @@ int main(){
             }
         }
         // Seat ID Calculations
+        pair <int,int> planeCoordinates(XValue,YValue);
         planeSeatIDS.push_back((planeCoordinates.first * 8) + planeCoordinates.second);
         // Reset the values for looping again
         upperXValue = 127;
