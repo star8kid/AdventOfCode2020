@@ -6,6 +6,10 @@
 
 using namespace std;
 
+// Total Timestamp: About 21 minutes 38 seconds
+// First Timestamp ( I accidentally reset my stopwatch D: ): About 21 minutes 38 seconds
+// Second Timestamp: 18 minutes 14 seconds
+
 // A helper function. Ignore it.
 template <class Element>
 
@@ -41,25 +45,35 @@ void elementsOfTwoDim(vector<vector<TwoDimElement>> inputVector){
 }
 
 int uniqueGroupAnswersSum(string inputFileName){
+
+    // First, read the groups responses and put them neatly in vectors.
     string fileLine;
     ifstream inputFile(inputFileName);
-    vector<vector<string>> tempGroupAnswers = {};
-    vector<string> tempPersonAnswers = {};
+    vector<vector<string>> tempAllGroupsAnswers = {}; // This stores all the groups
+    vector<string> tempGroupAnswers = {}; // This stores an individual group before being pushed into the other vector
         if(inputFile.is_open()){
         while(getline(inputFile,fileLine)){
             if( fileLine == "" ){
-                tempGroupAnswers.push_back(tempPersonAnswers);
-                tempPersonAnswers.clear();
-
+                tempAllGroupsAnswers.push_back(tempGroupAnswers);
+                tempGroupAnswers.clear();
             }
             else{
-                tempPersonAnswers.push_back(fileLine);
+                tempGroupAnswers.push_back(fileLine);
             }
         }
     }
-    inputFile.close(); 
+    inputFile.close();
+    elementsOfTwoDim(tempAllGroupsAnswers);
 
-    elementsOfTwoDim(tempGroupAnswers);
+    // Second, count the unique responses and map them to a temp map so that the count only
+    // increases when answers are not already inside the map.
+
+    int totalUniqueAnswers = 0;
+    map<int,char> tempGroupUniqueAnswerMap;
+
+
+    // Run a double for loop here. For the int "keys", just use an increasing integer starting
+    // from 0 to make it simple.
     return 0;
 }
 
