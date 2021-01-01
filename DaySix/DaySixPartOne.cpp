@@ -1,14 +1,14 @@
 #include<iostream>
 #include<string>
 #include<vector>
-#include<map>
+#include<algorithm>
 #include<fstream>
 
 using namespace std;
 
 // Total Timestamp: About 21 minutes 38 seconds
 // First Timestamp ( I accidentally reset my stopwatch D: ): About 21 minutes 38 seconds
-// Second Timestamp: 18 minutes 14 seconds
+// Second Timestamp: 54 minutes 33 seconds
 
 // A helper function. Ignore it.
 template <class Element>
@@ -65,19 +65,35 @@ int uniqueGroupAnswersSum(string inputFileName){
     inputFile.close();
     elementsOfTwoDim(tempAllGroupsAnswers);
 
-    // Second, count the unique responses and map them to a temp map so that the count only
-    // increases when answers are not already inside the map.
+    // Second, count the unique responses and place them in a temp vector. Add in a condition so that, if the
+    // element selected is already inside the vector, it does not count.
 
     int totalUniqueAnswers = 0;
-    map<int,char> tempGroupUniqueAnswerMap;
+    int tempUniqueAnswersCount = 0;
+    vector<char> tempUniqueAnswersType = {};
+
+    // for(int a = 0; a < tempAllGroupsAnswers.size(); a++){
+    //     for(int b = 0; b < tempAllGroupsAnswers[a].size(); b++){
+    //         for(int c = 0; c < tempAllGroupsAnswers[a][b].length(); c++){
+    //             if(tempUniqueAnswersType.)
+    //         }
+    //     }
+    // }
 
 
-    // Run a double for loop here. For the int "keys", just use an increasing integer starting
-    // from 0 to make it simple.
     return 0;
 }
 
 
 int main (){
-    cout << uniqueGroupAnswersSum("inputSmall.txt");
+    // cout << uniqueGroupAnswersSum("inputSmall.txt");
+
+    vector<char> testCharVec = {'a','c','d','n'};
+    auto it = find(testCharVec.begin(),testCharVec.end(), 'b');
+    if (it == testCharVec.end()){
+        cout << "This element was not found in my vector" << endl;
+    }
+    else{
+        cout << "This element was found in my vector" << endl;
+    }
 }
