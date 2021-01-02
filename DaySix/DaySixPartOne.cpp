@@ -6,9 +6,9 @@
 
 using namespace std;
 
-// Total Timestamp: About 21 minutes 38 seconds
+// Total Timestamp: 1 hour 39 minutes 42 seconds
 // First Timestamp ( I accidentally reset my stopwatch D: ): About 21 minutes 38 seconds
-// Second Timestamp: 54 minutes 33 seconds
+// Second Timestamp: 1 hour 18 minutes 4 seconds
 
 // A helper function. Ignore it.
 template <class Element>
@@ -62,38 +62,33 @@ int uniqueGroupAnswersSum(string inputFileName){
             }
         }
     }
+    //Catch the last line of the file
+    tempAllGroupsAnswers.push_back(tempGroupAnswers);
+    tempGroupAnswers.clear();
     inputFile.close();
-    elementsOfTwoDim(tempAllGroupsAnswers);
 
     // Second, count the unique responses and place them in a temp vector. Add in a condition so that, if the
     // element selected is already inside the vector, it does not count.
 
     int totalUniqueAnswers = 0;
-    int tempUniqueAnswersCount = 0;
     vector<char> tempUniqueAnswersType = {};
 
-    // for(int a = 0; a < tempAllGroupsAnswers.size(); a++){
-    //     for(int b = 0; b < tempAllGroupsAnswers[a].size(); b++){
-    //         for(int c = 0; c < tempAllGroupsAnswers[a][b].length(); c++){
-    //             if(tempUniqueAnswersType.)
-    //         }
-    //     }
-    // }
-
-
-    return 0;
+    for(int a = 0; a < tempAllGroupsAnswers.size(); a++){
+        for(int b = 0; b < tempAllGroupsAnswers[a].size(); b++){
+            for(int c = 0; c < tempAllGroupsAnswers[a][b].length(); c++){
+                // "The answer wasn't found" case
+                if(find(tempUniqueAnswersType.begin(),tempUniqueAnswersType.end(), tempAllGroupsAnswers[a][b][c]) == tempUniqueAnswersType.end()){
+                    tempUniqueAnswersType.push_back(tempAllGroupsAnswers[a][b][c]);
+                }
+            }
+        }
+        // Add the unique answer count to the total sum
+        totalUniqueAnswers += tempUniqueAnswersType.size();
+        tempUniqueAnswersType.clear();
+    }
+    return totalUniqueAnswers;
 }
 
-
 int main (){
-    // cout << uniqueGroupAnswersSum("inputSmall.txt");
-
-    vector<char> testCharVec = {'a','c','d','n'};
-    auto it = find(testCharVec.begin(),testCharVec.end(), 'b');
-    if (it == testCharVec.end()){
-        cout << "This element was not found in my vector" << endl;
-    }
-    else{
-        cout << "This element was found in my vector" << endl;
-    }
+    cout << uniqueGroupAnswersSum("input.txt");
 }
